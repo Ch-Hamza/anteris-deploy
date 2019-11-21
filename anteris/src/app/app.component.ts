@@ -6,5 +6,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'anteris';
+  title = 'Anteris';
+  logIn = false;
+
+  ngAfterViewChecked() {
+    setTimeout(() => {
+      if (JSON.parse(localStorage.getItem('currentUser'))) {
+        this.logIn = true;
+      } else {
+        this.logIn = false;
+      }
+    });
+  }
+  
+  ngOnInit(){
+    this.title = "Dashboard";
+    if (JSON.parse(localStorage.getItem('currentUser'))) {
+      this.logIn = true;
+    } else {
+      this.logIn = false;
+    }
+  }
 }

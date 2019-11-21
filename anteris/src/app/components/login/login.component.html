@@ -1,0 +1,50 @@
+<div class="login-box">
+    <div class="login-logo">
+        <img class="img-fluid h-25 w-50" src="../../../assets/dist/img/ernst-young-ey-logo-png-transparent.png" alt="">
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">Sign in to start your session</p>
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="input-group mb-3 form-group has-feedback">
+                <input [ngClass]="{ 'is-invalid': submitted && f.username.errors }" formControlName="username" type="username"
+                name="login[username]" class="form-control" placeholder="Username">
+                <div class="input-group-append input-group-text">
+                    <span class="fas fa-envelope"></span>
+                </div>
+                <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.username.errors"
+                class="invalid-feedback">
+                    <div style="margin-top: 1rem; color: red" *ngIf="f.username.errors.required">Username is required</div>
+                </div>
+                </div>
+                <div class="input-group mb-3 form-group has-feedback">
+                <input [ngClass]="{ 'is-invalid': submitted && f.password.errors }" name="login[password]"
+                formControlName="password" type="password" class="form-control" placeholder="Password">
+                <div class="input-group-append input-group-text">
+                    <span class="fas fa-lock"></span>
+                </div>
+                <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.password.errors"
+                class="invalid-feedback">
+                    <div style="margin-top: 1rem; color: red" *ngIf="f.password.errors.required">Password is required</div>
+                </div>
+                </div>
+                <div class="row justify-content-center">
+                <!-- /.col -->
+                <div class="col-8">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                </div>
+                <!-- /.col -->
+                </div>
+            </form>
+        </div>
+        <!-- /.login-card-body -->
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-6 alert text-center" *ngIf="loginFail" style="background-color: rgba(255, 0, 0, 0.705)">
+        {{ failMessage }}
+    </div>
+</div>
+<!-- /.login-box -->
