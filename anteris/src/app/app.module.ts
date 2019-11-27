@@ -13,6 +13,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { PathLocationStrategy, LocationStrategy } from '@angular/common';
 import { RegisterComponent } from './components/register/register.component';
+import { DonationComponent } from './components/donation/donation.component';
+import { StripeCheckoutComponent } from './components/stripe-checkout/stripe-checkout.component';
+import { StripeCheckoutHandlerComponent } from './components/stripe-checkout-handler/stripe-checkout-handler.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import { RegisterComponent } from './components/register/register.component';
     HomeComponent,
     NavbarComponent,
     SidebarComponent,
+    DonationComponent,
+    StripeCheckoutComponent,
+    StripeCheckoutHandlerComponent,
   ],
   imports: [
     BrowserModule,
