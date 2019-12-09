@@ -13,6 +13,7 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String username);
     Optional<User> findByEmail(String email);
+    Optional<User> findByIdAndEnabled(long id, Boolean enabled);
     List<User> findUsersByEnabled(boolean enabled);
 
     @Query(value = "SELECT * FROM users LEFT JOIN user_roles ON users.id=user_roles.user_id LEFT JOIN roles ON user_roles.role_id = roles.id WHERE roles.name = ?1", nativeQuery = true)
