@@ -1,0 +1,64 @@
+<div class="row justify-content-center form-group">
+    <form [formGroup]="addVote" role="form" class="mb-5 w-75" (ngSubmit)="onSubmit()">
+        <div class="row justify-content-center">
+            <div class="form-group col-lg-12 col-md-10">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" placeholder="Title" [ngClass]="{ 'is-invalid': submitted && f.title.errors }" formControlName="title">
+                <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                    <div style="margin-top: 1rem; color: red" *ngIf="f.title.errors.required">Title is required</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="form-group col-lg-12 col-md-10">
+                <label for="description">Description</label>
+                <textarea class="form-control" formControlName="description" name="description" id="description" placeholder="Description" rows="5" [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
+                <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                    <div style="margin-top: 1rem; color: red"  *ngIf="f.description.errors.required">Description is required</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="form-group col-lg-12 col-md-10">
+                <label for="role_restriction">Role restriction</label>
+                <ng-select [items]="dropdownListRoles"
+                    bindLabel="role_restriction"
+                    [multiple]="true"
+                    placeholder="Select Roles"
+                    formControlName="role_restriction">
+                </ng-select>
+            </div>
+        </div>
+
+        <hr>
+        <div class="row justify-content-center">
+            <div class="form-group col-lg-12 col-md-10">
+                <label>Vote options</label>
+                <div class="row justify-content-end">
+                    <div class="btn btn-success btn-sm m-2" (click)="addVoteOption()">+ Add vote option</div>
+                </div>
+                <div formArrayName="voteOptionResponses">
+                    <div *ngFor="let vo of voteOptionResponses.controls; let i=index" class="mt-2">
+                        <div [formGroupName]="i">
+                            <div class="row">
+                                <div class="form-group col-lg-10 col-md-8">
+                                    <label>Option {{i+1}}</label>
+                                    <input type="text" class="form-control" id="title" placeholder="Option" formControlName="title">
+                                </div>
+                                <div class="col-lg-2 col-md-2 row align-items-center justify-content-center">
+                                    <div class="btn btn-danger badge" (click)="removeVoteOption(i)">Remove X</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <input type="submit" class="btn btn-success col-lg-6 col-md-10" value="Submit">
+        </div>
+    </form>
+</div>

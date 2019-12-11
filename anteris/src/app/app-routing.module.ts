@@ -5,6 +5,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
 import { DonationComponent } from './components/donation/donation.component';
+import { VoteComponent } from './components/vote/vote.component';
+import { VoteFormComponent } from './components/vote-form/vote-form.component';
 
 
 const routes: Routes = [
@@ -14,6 +16,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
 
   { path: 'donation', component: DonationComponent, canActivate: [AuthGuard] },
+
+  { path: 'vote', component: VoteComponent, canActivate: [AuthGuard] },
+  { path: 'add-vote', component: VoteFormComponent, canActivate: [AuthGuard] },
 
   // otherwise redirect to home
   { path: '**', redirectTo: 'login' }
