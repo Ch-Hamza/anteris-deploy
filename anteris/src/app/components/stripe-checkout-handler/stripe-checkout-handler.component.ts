@@ -9,7 +9,7 @@ import { DonationService } from 'src/app/services/donation.service';
 export class StripeCheckoutHandlerComponent implements OnInit {
 
   handler: any;
-  amount: number = 500;
+  amount: number = 5;
 
   constructor(private donationService: DonationService) { }
 
@@ -28,7 +28,7 @@ export class StripeCheckoutHandlerComponent implements OnInit {
     this.handler.open({
       name: 'Anteris',
       description: 'Donate to Anteris',
-      amount: this.amount,
+      amount: this.amount * 100,
     });
   }
 

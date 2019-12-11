@@ -1,1 +1,6 @@
-<div class="btn btn-success" (click)="handlePayment()">Click here to donate</div>
+<div class="row">
+    <div class="col-10 row justify-content-center mt-5">
+        <input type="number" class="form-control" placeholder="Amount" [(ngModel)]="amount">
+    </div>
+    <div class="btn btn-success mt-3 col-9" (click)="handlePayment()">Click here to donate</div>
+</div>
