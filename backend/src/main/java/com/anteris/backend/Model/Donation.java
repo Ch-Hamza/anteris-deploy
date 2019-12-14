@@ -11,7 +11,7 @@ public class Donation {
 
     private String montant;
 
-    @ManyToOne(targetEntity = User.class)
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     private User user;
 
     public Long getId() {
