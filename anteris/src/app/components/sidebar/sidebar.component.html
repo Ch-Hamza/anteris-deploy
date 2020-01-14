@@ -31,16 +31,23 @@
           </li>
 
           <li class="nav-item">
-            <a routerLink='donation' [className]="router.url === '/donation' ? 'nav-link active' : 'nav-link'">
+            <a routerLink='vote' [className]="router.url === '/vote' ? 'nav-link active' : 'nav-link'">
               <i class="nav-icon fas fa-th"></i>
-              <p>Donation</p>
+              <p>Vote</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a routerLink='vote' [className]="router.url === '/vote' ? 'nav-link active' : 'nav-link'">
+            <a routerLink='donation' [className]="router.url === '/donation' ? 'nav-link active' : 'nav-link'">
               <i class="nav-icon fas fa-th"></i>
-              <p>Vote</p>
+              <p>Donate</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a routerLink='donation-list' [className]="router.url === '/donation-list' ? 'nav-link active' : 'nav-link'">
+              <i class="nav-icon fas fa-th"></i>
+              <p>Donation list</p>
             </a>
           </li>
         </ul>

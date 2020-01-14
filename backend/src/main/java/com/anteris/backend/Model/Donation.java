@@ -10,6 +10,7 @@ public class Donation {
     private Long id;
 
     private String montant;
+    private String date;
 
     @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     private User user;
@@ -36,5 +37,13 @@ public class Donation {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

@@ -31,7 +31,7 @@ export class DonationService {
     return this.http.get(this.api + 'user/' + id);
   }
 
-  removeById(id) {
-    return this.http.delete(this.api + id);
+  findStats() {
+    return this.http.get(this.api + 'stats');
   }
 }

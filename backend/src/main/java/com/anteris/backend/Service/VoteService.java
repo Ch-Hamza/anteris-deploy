@@ -78,7 +78,6 @@ public class VoteService {
         if(voteOptional.isPresent()) {
             Vote vote = voteOptional.get();
             vote = edit(vote, voteResponse);
-            voteRepository.save(vote);
             return new ResponseEntity<>(vote, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -218,7 +217,19 @@ public class VoteService {
         vote.setRole_restriction(roles);
 
         //vote options
+        List<VoteOptionResult> options = voteResponse.getVote_options();
+        options.forEach(option -> {
+            Optional<VoteOption> optionDBOptional = voteOptionRepository.findById(option.getId());
+            if(optionDBOptional.isPresent()) {
+                VoteOption voteOption = optionDBOptional.get();
+                if(!voteOption.getTitle().equals(option.getTitle())) {
+                    voteOption.setTitle(option.getTitle());
+                    voteOptionRepository.save(voteOption);
+                }
+            }
+        });
 
+        voteRepository.save(vote);
         return vote;
     }
 }

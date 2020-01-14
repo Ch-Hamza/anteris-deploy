@@ -1,6 +1,7 @@
 package com.anteris.backend.Controller;
 
 import com.anteris.backend.Message.response.DonationResponse;
+import com.anteris.backend.Message.response.DonationStats;
 import com.anteris.backend.Message.response.VoteResponse;
 import com.anteris.backend.Service.DonationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,23 @@ public class DonationRestAPI {
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity<?> donation(@RequestBody DonationResponse donationResponse) {
         return donationService.donate(donationResponse);
+    }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public ResponseEntity<DonationResponse> getDonationById(@PathVariable("id") long id) {
+        return donationService.findById(id);
+    }
+
+    @GetMapping("/user/{id}")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public ResponseEntity<List<DonationResponse>> getDonationsByUserId(@PathVariable("id") long id) {
+        return donationService.findByUserId(id);
+    }
+
+    @GetMapping("/stats")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public ResponseEntity<DonationStats> getDonationStats() {
+        return donationService.findStats();
     }
 }
