@@ -22,6 +22,7 @@ import { StripeCheckoutHandlerComponent } from './components/stripe-checkout-han
 import { VoteComponent } from './components/vote/vote.component';
 import { VoteDetailsComponent } from './components/vote-details/vote-details.component';
 import { VoteFormComponent } from './components/vote-form/vote-form.component';
+import {AuthInterceptor, httpInterceptorProviders} from './guards/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,10 @@ import { VoteFormComponent } from './components/vote-form/vote-form.component';
     NgSelectModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: AuthInterceptor, useClass: AuthInterceptor },
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import {AfterViewChecked, Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, AfterViewChecked {
   title = 'Anteris';
   logIn = false;
 
@@ -18,9 +18,9 @@ export class AppComponent {
       }
     });
   }
-  
-  ngOnInit(){
-    this.title = "Dashboard";
+
+  ngOnInit() {
+    this.title = 'Dashboard';
     if (JSON.parse(localStorage.getItem('currentUser'))) {
       this.logIn = true;
     } else {
