@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { VoteService } from 'src/app/services/vote.service';
 
 @Component({
   selector: 'app-vote-details',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VoteDetailsComponent implements OnInit {
 
-  constructor() { }
+  vote;
+  
+  constructor(private route: ActivatedRoute,
+    private voteService: VoteService) { }
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  loadData() {
+    this.route.params.subscribe(params => {
+      this.voteService.findById(params['id']).subscribe(data => {
+        this.vote = data;
+      })
+    });
   }
 
 }

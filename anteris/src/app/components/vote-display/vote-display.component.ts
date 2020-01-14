@@ -14,6 +14,7 @@ export class VoteDisplayComponent implements OnInit {
   @Input() vote;
   currentUserAuthority;
   authorized = false;
+  restricted = false;
 
   constructor(private voteService: VoteService, 
     private confirmationDialogService: ConfirmationDialogService,
@@ -21,9 +22,10 @@ export class VoteDisplayComponent implements OnInit {
     private toastr: ToastrService) { }
 
   ngOnInit() {
-    console.log(this.vote)
+    //console.log(this.vote)
     this.currentUserAuthority = this.loginService.currentUserValue.authorities;
     this.checkAuthority();
+    this.checkRestriction();
     this.checkVoteClosed()
     this.checked_votes();
     this.option_percentage();
@@ -34,6 +36,15 @@ export class VoteDisplayComponent implements OnInit {
     if(checkRoleExistence('ROLE_ADMIN')) {
       this.authorized = true;
     }
+  }
+
+  checkRestriction() {
+    console.log(this.currentUserAuthority);
+    console.log(this.vote.role_restriction);
+    /*const checkRoleExistence = roleParam => this.currentUserAuthority.some( ({authority}) => authority == roleParam)
+    if(checkRoleExistence('ROLE_ADMIN')) {
+      this.authorized = true;
+    }*/
   }
 
   triggerFunction(vote) {

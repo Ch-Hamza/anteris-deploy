@@ -29,6 +29,7 @@ import { AuthInterceptor } from './guards/auth-interceptor';
 import { VoteDisplayComponent } from './components/vote-display/vote-display.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { VoteEditComponent } from './components/vote-edit/vote-edit.component';
+import { DonationListComponent } from './components/donation-list/donation-list.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { VoteEditComponent } from './components/vote-edit/vote-edit.component';
     VoteDisplayComponent,
     ConfirmationDialogComponent,
     VoteEditComponent,
+    DonationListComponent,
   ],
   entryComponents: [ConfirmationDialogComponent],
   imports: [

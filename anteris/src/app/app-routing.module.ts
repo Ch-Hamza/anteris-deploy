@@ -10,7 +10,6 @@ import { VoteFormComponent } from './components/vote-form/vote-form.component';
 import { VoteEditComponent } from './components/vote-edit/vote-edit.component';
 import { VoteDetailsComponent } from './components/vote-details/vote-details.component';
 
-
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   
@@ -18,6 +17,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
 
   { path: 'donation', component: DonationComponent, canActivate: [AuthGuard] },
+  { path: 'donation-list', component: DonationComponent, canActivate: [AuthGuard] },
 
   { path: 'vote', component: VoteComponent, canActivate: [AuthGuard] },
   { path: 'add-vote', component: VoteFormComponent, canActivate: [AuthGuard] },

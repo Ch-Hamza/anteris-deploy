@@ -18,4 +18,20 @@ export class DonationService {
     //console.log(donation);
     return this.http.post(this.api, donation);
   }
+
+  findAll() {
+    return this.http.get(this.api);
+  }
+
+  findById(id) {
+    return this.http.get(this.api + id);
+  }
+
+  findByUserId(id) {
+    return this.http.get(this.api + 'user/' + id);
+  }
+
+  removeById(id) {
+    return this.http.delete(this.api + id);
+  }
 }
