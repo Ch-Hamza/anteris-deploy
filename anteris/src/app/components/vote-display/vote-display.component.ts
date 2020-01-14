@@ -39,12 +39,12 @@ export class VoteDisplayComponent implements OnInit {
   }
 
   checkRestriction() {
-    console.log(this.currentUserAuthority);
-    console.log(this.vote.role_restriction);
-    /*const checkRoleExistence = roleParam => this.currentUserAuthority.some( ({authority}) => authority == roleParam)
-    if(checkRoleExistence('ROLE_ADMIN')) {
-      this.authorized = true;
-    }*/
+    const checkRoleExistence = roleParam => this.vote.role_restriction.some((role) => role == roleParam)
+    this.currentUserAuthority.forEach(function(role){
+      if(checkRoleExistence(role['authority'])) {
+        this.restricted = true;
+      }
+    }.bind(this));
   }
 
   triggerFunction(vote) {
