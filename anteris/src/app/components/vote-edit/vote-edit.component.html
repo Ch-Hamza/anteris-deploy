@@ -1,10 +1,10 @@
-<div class="row justify-content-center form-group">
+<div class="row justify-content-center form-group" *ngIf="loaded">
     <form [formGroup]="editVote" role="form" class="mb-5 w-75" (ngSubmit)="onSubmit()">
         <div class="row justify-content-center">
             <div class="form-group col-lg-12 col-md-10">
                 <label for="title">Title</label>
                 <input type="text" class="form-control" id="title" placeholder="Title" [ngClass]="{ 'is-invalid': submitted && f.title.errors }" formControlName="title">
-                <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.title.errors" class="invalid-feedback">
                     <div style="margin-top: 1rem; color: red" *ngIf="f.title.errors.required">Title is required</div>
                 </div>
             </div>

@@ -18,7 +18,7 @@ export class VoteDisplayComponent implements OnInit {
 
   constructor(private voteService: VoteService, 
     private confirmationDialogService: ConfirmationDialogService,
-    private loginService: LoginService, 
+    private loginService: LoginService,
     private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -26,7 +26,7 @@ export class VoteDisplayComponent implements OnInit {
     this.currentUserAuthority = this.loginService.currentUserValue.authorities;
     this.checkAuthority();
     this.checkRestriction();
-    this.checkVoteClosed()
+    this.checkVoteClosed();
     this.checked_votes();
     this.option_percentage();
   }

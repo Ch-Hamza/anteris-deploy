@@ -13,6 +13,7 @@ export class VoteEditComponent implements OnInit {
 
   editVote: FormGroup;
   vote;
+  loaded = false;
 
   dropdownListRoles = [
     'ROLE_ADMIN',
@@ -34,7 +35,9 @@ export class VoteEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.voteService.findById(params['id']).subscribe(data => {
         this.vote = data;
+        console.log(data)
         this.initForm();
+        this.loaded = true;
       });
     });
   }
@@ -47,6 +50,12 @@ export class VoteEditComponent implements OnInit {
       end_date: [this.vote.end_date],
       role_restriction: [this.vote.role_restriction],
       voteOptionResponses: this.formBuilder.array([]),
+    });
+
+    this.vote.vote_options.forEach(option => {
+      this.voteOptionResponses.push(this.formBuilder.group({
+        title: [option.title],
+      }));
     });
   }
 

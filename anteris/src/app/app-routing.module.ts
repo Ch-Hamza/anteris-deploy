@@ -22,8 +22,8 @@ const routes: Routes = [
 
   { path: 'vote', component: VoteComponent, canActivate: [AuthGuard] },
   { path: 'add-vote', component: VoteFormComponent, canActivate: [AuthGuard] },
-  { path: 'edit-vote', component: VoteEditComponent, canActivate: [AuthGuard] },
-  { path: 'vote-details', component: VoteDetailsComponent, canActivate: [AuthGuard] },
+  { path: 'edit-vote/:id', component: VoteEditComponent, canActivate: [AuthGuard] },
+  { path: 'vote-details/:id', component: VoteDetailsComponent, canActivate: [AuthGuard] },
 
   // otherwise redirect to home
   { path: '**', redirectTo: 'login' }
