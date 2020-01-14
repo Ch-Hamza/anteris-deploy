@@ -25,7 +25,7 @@ import { StripeCheckoutHandlerComponent } from './components/stripe-checkout-han
 import { VoteComponent } from './components/vote/vote.component';
 import { VoteDetailsComponent } from './components/vote-details/vote-details.component';
 import { VoteFormComponent } from './components/vote-form/vote-form.component';
-import { AuthInterceptor } from './guards/auth-interceptor';
+import { AuthInterceptor, httpInterceptorProviders } from './guards/auth-interceptor';
 import { VoteDisplayComponent } from './components/vote-display/vote-display.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { VoteEditComponent } from './components/vote-edit/vote-edit.component';
@@ -66,7 +66,8 @@ import { DonationListComponent } from './components/donation-list/donation-list.
     NgbModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: AuthInterceptor, useClass: AuthInterceptor },
+    httpInterceptorProviders,
     { provide: LocationStrategy, useClass: PathLocationStrategy },
   ],
   bootstrap: [AppComponent]
