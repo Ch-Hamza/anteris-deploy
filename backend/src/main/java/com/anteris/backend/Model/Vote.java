@@ -17,6 +17,9 @@ public class Vote {
     @Column(length = 10000)
     private String description;
 
+    private String startDate;
+    private String endDate;
+
     /*@OneToMany(targetEntity = VoteOption.class)
     private List<VoteOption> voteOptionList;*/
 
@@ -62,5 +65,21 @@ public class Vote {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 }

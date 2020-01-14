@@ -1,66 +1,8 @@
 <div class="row justify-content-end">
-    <div class="btn btn-success" routerLink="/add-vote"><i class="fa fa-plus"></i>Add Vote</div>
+    <div class="btn btn-sm btn-success mb-5" routerLink="/add-vote"><i class="fa fa-plus"></i> Add Vote</div>
 </div>
 <div class="row justify-content-center">
-    <div class="col-lg-6 col-md-10" *ngFor="let ref of references">
-        <div class="card">
-            <div class="row justify-content-around">
-                <div class="bg-info-active col-7 pt-4">
-                    <div>{{vote.title}}</div><hr>
-                    <h6 class="text-muted"><i class="fa fa-clock"></i>01D 10H 23M 52S</h6>
-                </div>
-            </div>
-              
-            <div class="card-footer mt-3">
-                <div class="row justify-content-center">
-                    <div class="col-sm-8 border-right mt-3">
-                        <div class="description-block" *ngIf="ref.client.representative_name">
-                            <h5 class="description-header">vote results</h5>
-                            <div>
-                                <div class="progress mb-3">
-                                    <div class="progress-bar bg-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                        <span class="sr-only">40% Complete (success)</span>
-                                    </div>
-                                    <div><i class="fa fa-comment-dots"></i></div>
-                                </div>
-                                <div class="progress mb-3">
-                                    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                        <span class="sr-only">20% Complete</span>
-                                    </div>
-                                </div>
-                                <div class="progress mb-3">
-                                    <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                        <span class="sr-only">60% Complete (warning)</span>
-                                    </div>
-                                </div>
-                                <div class="progress mb-3">
-                                    <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                        <span class="sr-only">80% Complete</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-3 mt-4">
-                    <div class="row justify-content-center">
-                        <a class="btn btn-sm bg10 col-10 text-white-c" [routerLink]="['/vote-details', vote.id]">Vote Details</a>
-                        <div class="btn btn-default" (click)="vote()">Vote</div>
-                        <div class="btn-group show">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>   
-                            <div class="dropdown-menu show" role="menu" x-placement="top-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(68px, -165px, 0px);">
-                                <a class="dropdown-item btn btn-sm col-10 mt-1" [routerLink]="['/edit-vote', vote.id]">Edit</a>
-                                <div class="dropdown-divider"></div>
-                                <div class="dropdown-item btn btn-sm col-10 mt-1 " style="cursor: pointer;color: white !important;" (click)="openConfirmationDialog(vote.id)">Delete</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="col-lg-6 col-md-10" *ngFor="let vote of votes; let i=index">
+        <app-vote-display [vote]='vote'></app-vote-display>
     </div>
 </div>

@@ -1,8 +1,8 @@
 package com.anteris.backend.Service;
 
 import com.anteris.backend.Message.request.VoteForm;
-import com.anteris.backend.Message.response.ResponseMessage;
 import com.anteris.backend.Message.response.VoteOptionResponse;
+import com.anteris.backend.Message.response.VoteOptionResult;
 import com.anteris.backend.Message.response.VoteResponse;
 import com.anteris.backend.Model.*;
 import com.anteris.backend.Repository.*;
@@ -132,6 +132,8 @@ public class VoteService {
     private Vote setData(Vote vote, VoteResponse voteResponse) {
         vote.setTitle(voteResponse.getTitle());
         vote.setDescription(voteResponse.getDescription());
+        vote.setStartDate(voteResponse.getStart_date());
+        vote.setEndDate(voteResponse.getEnd_date());
 
         List<String> role_restriction = voteResponse.getRole_restriction();
         Set<Role> roles = new HashSet<>();
@@ -160,6 +162,8 @@ public class VoteService {
         voteResponse.setId(vote.getId());
         voteResponse.setTitle(vote.getTitle());
         voteResponse.setDescription(vote.getDescription());
+        voteResponse.setStart_date(vote.getStartDate());
+        voteResponse.setEnd_date(vote.getEndDate());
 
         List<String> roles = new ArrayList<>();
         vote.getRole_restriction().forEach(role -> {
@@ -168,6 +172,7 @@ public class VoteService {
         voteResponse.setRole_restriction(roles);
 
         List<VoteOptionResponse> voteOptionResponses = new ArrayList<>();
+        List<VoteOptionResult> options = new ArrayList<>();
 
         List<VoteOption> voteOptions = voteOptionRepository.findVoteOptionByVote_Id(vote.getId());
         voteOptions.forEach(voteOption -> {
@@ -175,14 +180,24 @@ public class VoteService {
             voteOptionResponse.setId(voteOption.getId());
             voteOptionResponse.setTitle(voteOption.getTitle());
 
+            VoteOptionResult voteOptionResult = new VoteOptionResult();
+            voteOptionResult.setId(voteOption.getId());
+            voteOptionResult.setTitle(voteOption.getTitle());
+            voteOptionResult.setTotal_votes(0);
+
             Optional<VoteResult> voteResultOptional = voteResultRepository.findVoteResultByVoteOption_IdAndVoteOption_Vote_Id(voteOption.getId(), vote.getId());
             if(voteResultOptional.isPresent()) {
                 User user = voteResultOptional.get().getUser();
-                voteOptionResponse.setUser(user.getFirstname() + " " + user.getLastname());
+                voteOptionResponse.setUser_id(user.getId());
                 voteOptionResponses.add(voteOptionResponse);
+
+                int total_votes = voteOptionResult.getTotal_votes();
+                voteOptionResult.setTotal_votes(total_votes + 1);
             }
+            options.add(voteOptionResult);
         });
         voteResponse.setVoteOptionResponses(voteOptionResponses);
+        voteResponse.setVote_options(options);
 
         return voteResponse;
     }
@@ -190,6 +205,8 @@ public class VoteService {
     private Vote edit(Vote vote, VoteResponse voteResponse) {
         vote.setTitle(voteResponse.getTitle());
         vote.setDescription(voteResponse.getDescription());
+        vote.setStartDate(voteResponse.getStart_date());
+        vote.setEndDate(voteResponse.getEnd_date());
 
         Set<Role> roles = new HashSet<>();
         voteResponse.getRole_restriction().forEach(role -> {
@@ -199,6 +216,9 @@ public class VoteService {
             }
         });
         vote.setRole_restriction(roles);
+
+        //vote options
+
         return vote;
     }
 }

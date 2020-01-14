@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VoteService } from 'src/app/services/vote.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-vote',
@@ -13,9 +14,13 @@ export class VoteComponent implements OnInit {
   constructor(private voteService: VoteService) { }
 
   ngOnInit() {
-    this.voteService.findAll().subscribe(data => {
-      this.votes = data;
-    })
+    this.loadData();
   }
 
+  loadData() {
+    this.voteService.findAll().subscribe(data => {
+      console.log(data)
+      this.votes = data;
+    });
+  }
 }

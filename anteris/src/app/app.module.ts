@@ -1,12 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { CountdownTimerModule } from 'angular-countdown-timer';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +25,10 @@ import { StripeCheckoutHandlerComponent } from './components/stripe-checkout-han
 import { VoteComponent } from './components/vote/vote.component';
 import { VoteDetailsComponent } from './components/vote-details/vote-details.component';
 import { VoteFormComponent } from './components/vote-form/vote-form.component';
+import { AuthInterceptor } from './guards/auth-interceptor';
+import { VoteDisplayComponent } from './components/vote-display/vote-display.component';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { VoteEditComponent } from './components/vote-edit/vote-edit.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +44,11 @@ import { VoteFormComponent } from './components/vote-form/vote-form.component';
     VoteComponent,
     VoteDetailsComponent,
     VoteFormComponent,
+    VoteDisplayComponent,
+    ConfirmationDialogComponent,
+    VoteEditComponent,
   ],
+  entryComponents: [ConfirmationDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -48,8 +59,14 @@ import { VoteFormComponent } from './components/vote-form/vote-form.component';
     ToastrModule.forRoot(),
     NgSelectModule,
     BrowserAnimationsModule,
+    CountdownTimerModule.forRoot(),
+    MatProgressBarModule,
+    NgbModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

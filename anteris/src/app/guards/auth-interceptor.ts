@@ -1,4 +1,4 @@
-import { HTTP_INTERCEPTORS, HttpEvent, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { LoginService } from '../services/login.service';
@@ -13,11 +13,10 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (localStorage.getItem('currentUser') != null) {
-            let authReq = request;
             const token = JSON.parse(localStorage.getItem('currentUser')).token;
-            authReq = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token) });
+            let authReq = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token) });
             
-            return next.handle(request).pipe(tap((event: HttpEvent<any>) => {}, (err: any) => {
+            return next.handle(authReq).pipe(tap((event: HttpEvent<any>) => {}, (err: any) => {
                 if (err instanceof HttpErrorResponse) {
                     if (err.status === 401) {
                         // console.log("token expired or permission denied");
@@ -32,7 +31,3 @@ export class AuthInterceptor implements HttpInterceptor {
         }
     }
 }
- 
-export const httpInterceptorProviders = [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
-];

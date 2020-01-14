@@ -7,7 +7,10 @@ public class VoteResponse {
     private long id;
     private String title;
     private String description;
+    private String start_date;
+    private String end_date;
     private List<String> role_restriction;
+    private List<VoteOptionResult> vote_options;
     private List<VoteOptionResponse> voteOptionResponses;
 
     public long getId() {
@@ -48,5 +51,29 @@ public class VoteResponse {
 
     public void setVoteOptionResponses(List<VoteOptionResponse> voteOptionResponses) {
         this.voteOptionResponses = voteOptionResponses;
+    }
+
+    public String getStart_date() {
+        return start_date;
+    }
+
+    public void setStart_date(String start_date) {
+        this.start_date = start_date;
+    }
+
+    public String getEnd_date() {
+        return end_date;
+    }
+
+    public void setEnd_date(String end_date) {
+        this.end_date = end_date;
+    }
+
+    public List<VoteOptionResult> getVote_options() {
+        return vote_options;
+    }
+
+    public void setVote_options(List<VoteOptionResult> vote_options) {
+        this.vote_options = vote_options;
     }
 }
