@@ -1,23 +1,23 @@
-<div class="row justify-content-center">
+<div class="row justify-content-center" *ngIf="loaded">
     <div class="col-lg-8 col-md-10">
         <div class="mb-2 fa-2x"><b>Top Donations</b></div>
         <div class="row  justify-content-center">
-            <div class="col-md-10 col-lg-3">
+            <div class="col-md-10 col-lg-3" *ngFor="let top_donation of donation_stats.top_donations">
                 <div class="card card-primary card-outline">
                     <div class="card-body box-profile">
                       <div class="text-center">
                         <img class="profile-user-img img-fluid img-circle"
-                             src="../../../assets/uploads/default-user-image.png"
+                             src="../../../assets/uploads/{{top_donation.image}}"
                              alt="User profile picture">
                       </div>
       
-                      <h3 class="profile-username text-center">Nina Mcintire</h3>
+                      <h3 class="profile-username text-center">{{top_donation.fullaname}}</h3>
       
                       <p class="text-muted text-center">Software Engineer</p>
       
                       <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item text-center">
-                          <div>4000</div>
+                          <div>{{top_donation.amount}} DT</div>
                           <b>Donation</b>
                         </li>
                       </ul>
@@ -32,7 +32,7 @@
             <div class="col-12">
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>150 DT</h3>
+                        <h3>{{donation_stats.total_donations}} DT</h3>
                         <p>ALL TIME</p>
                     </div>
                     <div class="icon">
@@ -43,7 +43,7 @@
             <div class="col-12">
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>53 DT</h3>
+                        <h3>{{donation_stats.total_month_donations}} DT</h3>
                         <p>THIS MONTH</p>
                     </div>
                     <div class="icon">
@@ -55,7 +55,7 @@
     </div>
 </div>
 
-<div class="row justify-content-center">
+<div class="row justify-content-center" *ngIf="loaded">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
@@ -71,7 +71,9 @@
                     </tr>
                     <tr *ngFor="let donation of donations">
                         <td>{{donation.id}}</td>
-                        <td><span class="tag tag-success">50</span></td>
+                        <td>{{donation.user_fullname}}</td>
+                        <td>{{donation.date}}</td>
+                        <td><span class="tag tag-success">{{donation.amount}}</span></td>
                     </tr>
                 </table>
             </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DonationService } from 'src/app/services/donation.service';
+import { Observable, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-donation-list',
@@ -9,6 +10,8 @@ import { DonationService } from 'src/app/services/donation.service';
 export class DonationListComponent implements OnInit {
 
   donations;
+  donation_stats;
+  loaded = false;
 
   constructor(private donationService: DonationService) { }
 
@@ -17,9 +20,16 @@ export class DonationListComponent implements OnInit {
   }
 
   loadData() {
-    this.donationService.findAll().subscribe(data => {
-      console.log(data);
-      this.donations = data;
+    let donations = this.donationService.findAll();
+    let stats = this.donationService.findStats();
+    forkJoin([donations, stats]).subscribe(results => {
+      // results[0] is our character
+      // results[1] is our character homeworld
+      this.donations = results[0];
+      this.donation_stats = results[1];
+      this.loaded = true;
+      //console.log(this.donations);
+      //console.log(this.donation_stats);
     });
   }
 

@@ -6,7 +6,7 @@ public class DonationStats {
 
     private long total_donations;
     private long total_month_donations;
-    private List<String> top_donators;
+    private List<TopDonation> top_donations;
 
     public long getTotal_donations() {
         return total_donations;
@@ -24,11 +24,11 @@ public class DonationStats {
         this.total_month_donations = total_month_donations;
     }
 
-    public List<String> getTop_donators() {
-        return top_donators;
+    public List<TopDonation> getTop_donations() {
+        return top_donations;
     }
 
-    public void setTop_donators(List<String> top_donators) {
-        this.top_donators = top_donators;
+    public void setTop_donations(List<TopDonation> top_donations) {
+        this.top_donations = top_donations;
     }
 }

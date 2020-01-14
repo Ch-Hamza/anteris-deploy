@@ -15,7 +15,6 @@ export class DonationService {
   processPayment(token: any, amount) {
     console.log(token);
     let donation = {'amount': amount, 'user_id': JSON.parse(localStorage.getItem('currentUser')).user.id}
-    //console.log(donation);
     return this.http.post(this.api, donation);
   }
 

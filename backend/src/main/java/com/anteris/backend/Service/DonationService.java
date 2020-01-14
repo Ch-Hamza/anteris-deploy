@@ -3,6 +3,7 @@ package com.anteris.backend.Service;
 import com.anteris.backend.Message.response.DonationResponse;
 import com.anteris.backend.Message.response.DonationStats;
 import com.anteris.backend.Message.response.ResponseMessage;
+import com.anteris.backend.Message.response.TopDonation;
 import com.anteris.backend.Model.Donation;
 import com.anteris.backend.Model.User;
 import com.anteris.backend.Repository.DonationRepository;
@@ -13,10 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class DonationService {
@@ -50,13 +48,13 @@ public class DonationService {
 
     public ResponseEntity<?> donate(DonationResponse donationResponse) {
 
-        Optional<User> userOptional = userRepository.findByIdAndEnabled(Long.parseLong(donationResponse.getUser_id()), true);
+        Optional<User> userOptional = userRepository.findByIdAndEnabled(Long.parseLong(donationResponse.getUser_fullname()), true);
         if(userOptional.isPresent()) {
             User user = userOptional.get();
             Donation donation = setData(donationResponse, user);
 
             donationRepository.save(donation);
-            return new ResponseEntity<>(donation, HttpStatus.OK);
+            return new ResponseEntity<>(donationResponse, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(new ResponseMessage("User no found"), HttpStatus.NOT_FOUND);
         }
@@ -116,19 +114,24 @@ public class DonationService {
             donationStats.setTotal_donations(Long.parseLong(donation.getMontant()) + oldTotal);
         });
 
-        List<String> topDonators = new ArrayList<>();
-        List<Donation> topDonations = donationRepository.findTopDonations();
-        topDonations.forEach(donation -> {
-            topDonators.add(donation.getUser().getFirstname() + " " + donation.getUser().getLastname());
+        List<TopDonation> topDonations = new ArrayList<>();
+        List<Donation> topDonationsDB = donationRepository.findTopDonations();
+        topDonationsDB.forEach(donation -> {
+            TopDonation topDonation = new TopDonation();
+            topDonation.setFullname(donation.getUser().getFirstname() + " " + donation.getUser().getLastname());
+            topDonation.setImage("default-user-image.png");
+            topDonation.setAmount(Long.parseLong(donation.getMontant()));
+            topDonations.add(topDonation);
         });
-        donationStats.setTop_donators(topDonators);
+        donationStats.setTop_donations(topDonations);
         return new ResponseEntity<>(donationStats, HttpStatus.OK);
     }
 
     public DonationResponse setResponse(Donation donation) {
         DonationResponse donationResponse = new DonationResponse();
+        donationResponse.setId(donation.getId());
         donationResponse.setAmount(donation.getMontant());
-        donationResponse.setUser_id(donation.getUser().getId().toString());
+        donationResponse.setUser_fullname(donation.getUser().getFirstname() + " " + donation.getUser().getLastname());
         donationResponse.setDate(donation.getDate());
         return donationResponse;
     }
