@@ -41,7 +41,6 @@ public class UserRestAPI {
     @PostMapping("/")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> newUser(@RequestBody SignUpForm signUpRequest) {
-
         return userService.newUser(signUpRequest);
     }
 

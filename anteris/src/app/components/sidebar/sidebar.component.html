@@ -31,6 +31,13 @@
           </li>
 
           <li class="nav-item">
+            <a routerLink='member' [className]="router.url === '/member' ? 'nav-link active' : 'nav-link'">
+              <i class="nav-icon fas fa-th"></i>
+              <p>Members</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a routerLink='vote' [className]="router.url === '/vote' ? 'nav-link active' : 'nav-link'">
               <i class="nav-icon fas fa-th"></i>
               <p>Vote</p>

@@ -138,9 +138,17 @@ public class UserService {
                 }
             }
 
+            if(!user.getFirstname().equals(""))
             _user.setFirstname(user.getFirstname());
+
+            if(!user.getLastname().equals(""))
             _user.setLastname(user.getLastname());
+
+            if(!user.getUsername().equals(""))
             _user.setUsername(user.getUsername());
+
+            if(!user.getEmail().equals(""))
+            _user.setEmail(user.getEmail());
 
             List<String> _roles = new ArrayList<>();
             Set<Role> roles = _user.getRoles();

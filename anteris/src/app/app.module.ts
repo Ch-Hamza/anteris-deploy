@@ -30,6 +30,8 @@ import { VoteDisplayComponent } from './components/vote-display/vote-display.com
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { VoteEditComponent } from './components/vote-edit/vote-edit.component';
 import { DonationListComponent } from './components/donation-list/donation-list.component';
+import { ListMembersComponent } from './components/list-members/list-members.component';
+import { EditMemberComponent } from './components/edit-member/edit-member.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { DonationListComponent } from './components/donation-list/donation-list.
     ConfirmationDialogComponent,
     VoteEditComponent,
     DonationListComponent,
+    ListMembersComponent,
+    EditMemberComponent,
   ],
   entryComponents: [ConfirmationDialogComponent],
   imports: [

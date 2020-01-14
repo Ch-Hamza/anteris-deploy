@@ -10,12 +10,18 @@ import { VoteFormComponent } from './components/vote-form/vote-form.component';
 import { VoteEditComponent } from './components/vote-edit/vote-edit.component';
 import { VoteDetailsComponent } from './components/vote-details/vote-details.component';
 import { DonationListComponent } from './components/donation-list/donation-list.component';
+import { ListMembersComponent } from './components/list-members/list-members.component';
+import { EditMemberComponent } from './components/edit-member/edit-member.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
+
+  { path: 'member', component: ListMembersComponent, canActivate: [AuthGuard] },
+  { path: 'edit-member/:id', component: EditMemberComponent, canActivate: [AuthGuard] },
+
 
   { path: 'donation', component: DonationComponent, canActivate: [AuthGuard] },
   { path: 'donation-list', component: DonationListComponent, canActivate: [AuthGuard] },
