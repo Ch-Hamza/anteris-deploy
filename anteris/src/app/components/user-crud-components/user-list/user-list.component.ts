@@ -3,6 +3,7 @@ import {User} from '../../../models/user';
 import {HumanManagementService} from '../../../services/humanManagement.service';
 import {ToastrService} from 'ngx-toastr';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {PendingAccountService} from '../../../services/pendingAccount.service';
 
 @Component({
   selector: 'app-user-list',
@@ -13,6 +14,8 @@ export class UserListComponent implements OnInit {
 
   roleForm: FormGroup;
   users: User[];
+  pendingCount = 0;
+  email = '';
   editMode = false;
   selectedUser: User;
   dropdownListRoles = [
@@ -23,6 +26,7 @@ export class UserListComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private humanManagement: HumanManagementService,
+              private pendingAccountService: PendingAccountService,
               private toastr: ToastrService) {
   }
 
@@ -32,11 +36,29 @@ export class UserListComponent implements OnInit {
   });
 }
   ngOnInit() {
+    this.pendingAccountService.countAll().subscribe(
+      (data) => console.log(data)
+    );
     this.humanManagement.findAll().subscribe(
       (data) =>  this.users = data as User[],
       () => this.toastr.error('An error has occured!'));
   }
 
+  sendInvitation() {
+    this.pendingAccountService.invite(this.email).subscribe(
+      () => this.toastr.success('Invitation Sent'),
+      () => this.toastr.warning('Invitation Error')
+    );
+    this.pendingAccountService.countAll().subscribe(
+      (data) => console.log(data)
+    );
+  }
+  deleteInvitation() {
+    this.pendingAccountService.deleteAll().subscribe(
+      () => this.toastr.success('Invitations Deleted'),
+      () => this.toastr.warning('Delete Error')
+    );
+  }
   addUser() {
     this.users.push(this.users[0]);
   }
