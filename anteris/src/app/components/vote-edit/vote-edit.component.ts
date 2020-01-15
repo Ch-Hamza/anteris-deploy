@@ -78,7 +78,7 @@ export class VoteEditComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.editVote.value);
+    //console.log(this.editVote.value);
 
     // stop here if form is invalid
     if (this.editVote.invalid) {
