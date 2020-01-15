@@ -48,7 +48,7 @@ export class EditMemberComponent implements OnInit {
         lastname: [this.user.lastname],
         username: [this.user.username],
         email: [this.user.email],
-        role: [this.user.roles],
+        roles: [this.user.roles],
       });
     }
   

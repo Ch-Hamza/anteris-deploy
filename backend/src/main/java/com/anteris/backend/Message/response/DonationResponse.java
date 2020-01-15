@@ -5,6 +5,7 @@ public class DonationResponse {
     private long id;
     private String amount;
     private String user_fullname;
+    private long user_id;
     private String date;
 
     public long getId() {
@@ -37,5 +38,13 @@ public class DonationResponse {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(long user_id) {
+        this.user_id = user_id;
     }
 }

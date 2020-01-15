@@ -21,12 +21,7 @@ export class VoteDetailsComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.currentUserAuthority = this.loginService.currentUserValue.authorities;
     this.loadData();
-    this.checkAuthority();
-    if(!this.checkRestriction()) {
-      this.router.navigate(['/vote']);
-    }
   }
 
   loadData() {
@@ -34,7 +29,10 @@ export class VoteDetailsComponent implements OnInit {
       this.voteService.findById(params['id']).subscribe(data => {
         console.log(data);
         this.vote = data;
+        this.currentUserAuthority = this.loginService.currentUserValue.authorities;
         this.checkVoteClosed();
+        this.checkAuthority();
+        this.option_percentage();
         this.loaded = true;
       })
     });
@@ -45,16 +43,6 @@ export class VoteDetailsComponent implements OnInit {
     if(checkRoleExistence('ROLE_ADMIN')) {
       this.authorized = true;
     }
-  }
-
-  checkRestriction() {
-    const checkRoleExistence = roleParam => this.vote.role_restriction.some((role) => role == roleParam)
-    this.currentUserAuthority.forEach(function(role){
-      if(checkRoleExistence(role['authority'])) {
-        return true;
-      }
-    }.bind(this));
-    return false;
   }
 
   triggerFunction(vote) {
@@ -70,6 +58,19 @@ export class VoteDetailsComponent implements OnInit {
     if (vote_end < new Date()) {
       this.vote['closed'] = 'true';
     }
+  }
+
+  option_percentage() {
+    let total = 0;
+    this.vote.vote_options.forEach(function(option){
+      total += +option.total_votes
+    });
+    this.vote.vote_options.forEach(function(option){
+      option['percentage'] = 0;
+      if(option.total_votes != 0) {
+        option['percentage'] = (option.total_votes/total)*100;
+      }
+    });
   }
 
 }

@@ -109,6 +109,7 @@ public class UserService {
         user.setFirstname(signUpRequest.getFirstname());
         user.setLastname(signUpRequest.getLastname());
         user.setUsername(signUpRequest.getUsername());
+        user.setEmail(signUpRequest.getEmail());
         user.setPassword(encoder.encode(signUpRequest.getPassword()));
         user.setEnabled(true);
 
@@ -151,15 +152,12 @@ public class UserService {
             if(!user.getEmail().equals(""))
             _user.setEmail(user.getEmail());
 
-            List<String> _roles = new ArrayList<>();
-
-            Set<Role> roles = _user.getRoles();
-
+            Set<Role> roles = new HashSet<>();
             user.getRoles().forEach( role -> {
                 roles.add(roleRepository.findByName(RoleName.valueOf(role)).get());
             });
-            // removing roles doesnt work !!
             _user.setRoles(roles);
+
             userRepository.save(_user);
             return new ResponseEntity<>(user, HttpStatus.OK);
         } else {

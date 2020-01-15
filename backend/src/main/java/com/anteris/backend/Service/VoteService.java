@@ -210,9 +210,7 @@ public class VoteService {
         Set<Role> roles = new HashSet<>();
         voteResponse.getRole_restriction().forEach(role -> {
             Optional<Role> roleDB = roleRepository.findByName(RoleName.valueOf(role));
-            if (roleDB.isPresent()) {
-                roles.add(roleDB.get());
-            }
+            roleDB.ifPresent(roles::add);
         });
         vote.setRole_restriction(roles);
 

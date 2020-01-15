@@ -48,7 +48,7 @@ public class DonationService {
 
     public ResponseEntity<?> donate(DonationResponse donationResponse) {
 
-        Optional<User> userOptional = userRepository.findByIdAndEnabled(Long.parseLong(donationResponse.getUser_fullname()), true);
+        Optional<User> userOptional = userRepository.findByIdAndEnabled(donationResponse.getUser_id(), true);
         if(userOptional.isPresent()) {
             User user = userOptional.get();
             Donation donation = setData(donationResponse, user);
