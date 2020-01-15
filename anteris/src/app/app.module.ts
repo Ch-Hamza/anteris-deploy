@@ -1,37 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { CountdownTimerModule } from 'angular-countdown-timer';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { LoginComponent } from './components/login-register-components/login/login.component';
+import { HomeComponent } from './components/layout-components/home/home.component';
+import { NavbarComponent } from './components/layout-components/navbar/navbar.component';
+import { SidebarComponent } from './components/layout-components/sidebar/sidebar.component';
 import { PathLocationStrategy, LocationStrategy } from '@angular/common';
-import { RegisterComponent } from './components/register/register.component';
-import { DonationComponent } from './components/donation/donation.component';
-import { StripeCheckoutComponent } from './components/stripe-checkout/stripe-checkout.component';
-import { StripeCheckoutHandlerComponent } from './components/stripe-checkout-handler/stripe-checkout-handler.component';
-import { VoteComponent } from './components/vote/vote.component';
-import { VoteDetailsComponent } from './components/vote-details/vote-details.component';
-import { VoteFormComponent } from './components/vote-form/vote-form.component';
-import { AuthInterceptor, httpInterceptorProviders } from './guards/auth-interceptor';
-import { VoteDisplayComponent } from './components/vote-display/vote-display.component';
-import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
-import { VoteEditComponent } from './components/vote-edit/vote-edit.component';
-import { DonationListComponent } from './components/donation-list/donation-list.component';
-import { ListMembersComponent } from './components/list-members/list-members.component';
-import { EditMemberComponent } from './components/edit-member/edit-member.component';
+import { RegisterComponent } from './components/login-register-components/register/register.component';
+import { DonationComponent } from './components/donation-components/donation/donation.component';
+import { StripeCheckoutComponent } from './components/donation-components/stripe-checkout/stripe-checkout.component';
+import { StripeCheckoutHandlerComponent } from './components/donation-components/stripe-checkout-handler/stripe-checkout-handler.component';
+import { VoteComponent } from './components/vote-components/vote/vote.component';
+import { VoteDetailsComponent } from './components/vote-components/vote-details/vote-details.component';
+import { VoteFormComponent } from './components/vote-components/vote-form/vote-form.component';
+import {AuthInterceptor, httpInterceptorProviders} from './guards/auth-interceptor';
+import {UserListComponent} from './components/user-crud-components/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -47,14 +39,8 @@ import { EditMemberComponent } from './components/edit-member/edit-member.compon
     VoteComponent,
     VoteDetailsComponent,
     VoteFormComponent,
-    VoteDisplayComponent,
-    ConfirmationDialogComponent,
-    VoteEditComponent,
-    DonationListComponent,
-    ListMembersComponent,
-    EditMemberComponent,
+    UserListComponent,
   ],
-  entryComponents: [ConfirmationDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -65,14 +51,10 @@ import { EditMemberComponent } from './components/edit-member/edit-member.compon
     ToastrModule.forRoot(),
     NgSelectModule,
     BrowserAnimationsModule,
-    CountdownTimerModule.forRoot(),
-    MatProgressBarModule,
-    NgbModule,
   ],
   providers: [
     { provide: AuthInterceptor, useClass: AuthInterceptor },
-    httpInterceptorProviders,
-    { provide: LocationStrategy, useClass: PathLocationStrategy },
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })

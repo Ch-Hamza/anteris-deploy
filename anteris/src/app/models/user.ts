@@ -2,9 +2,10 @@ export class User {
     id: number;
     username: string;
     password: string;
-    firstName: string;
-    lastName: string;
-    role: string[];
+    firstname: string;
+    lastname: string;
+    roles: string[];
     enable: boolean;
     token: string;
+    email: string;
 }
