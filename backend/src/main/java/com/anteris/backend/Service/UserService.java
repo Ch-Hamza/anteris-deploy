@@ -142,13 +142,13 @@ public class UserService {
             _user.setLastname(user.getLastname());
             _user.setUsername(user.getUsername());
 
-            List<String> _roles = new ArrayList<>();
             Set<Role> roles = _user.getRoles();
-            roles.forEach(role -> {
-                _roles.add(role.getName().name());
-            });
-            user.setRoles(_roles);
 
+            user.getRoles().forEach( role -> {
+                roles.add(roleRepository.findByName(RoleName.valueOf(role)).get());
+            });
+            // removing roles doesnt work !!
+            _user.setRoles(roles);
             userRepository.save(_user);
             return new ResponseEntity<>(user, HttpStatus.OK);
         } else {
@@ -204,6 +204,7 @@ public class UserService {
         _user.setId(user.getId());
         _user.setFirstname(user.getFirstname());
         _user.setLastname(user.getLastname());
+        _user.setEmail(user.getEmail());
         _user.setUsername(user.getUsername());
         _user.setEnabled(user.isEnabled());
 

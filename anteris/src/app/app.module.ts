@@ -10,19 +10,20 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { LoginComponent } from './components/login-register-components/login/login.component';
+import { HomeComponent } from './components/layout-components/home/home.component';
+import { NavbarComponent } from './components/layout-components/navbar/navbar.component';
+import { SidebarComponent } from './components/layout-components/sidebar/sidebar.component';
 import { PathLocationStrategy, LocationStrategy } from '@angular/common';
-import { RegisterComponent } from './components/register/register.component';
-import { DonationComponent } from './components/donation/donation.component';
-import { StripeCheckoutComponent } from './components/stripe-checkout/stripe-checkout.component';
-import { StripeCheckoutHandlerComponent } from './components/stripe-checkout-handler/stripe-checkout-handler.component';
-import { VoteComponent } from './components/vote/vote.component';
-import { VoteDetailsComponent } from './components/vote-details/vote-details.component';
-import { VoteFormComponent } from './components/vote-form/vote-form.component';
+import { RegisterComponent } from './components/login-register-components/register/register.component';
+import { DonationComponent } from './components/donation-components/donation/donation.component';
+import { StripeCheckoutComponent } from './components/donation-components/stripe-checkout/stripe-checkout.component';
+import { StripeCheckoutHandlerComponent } from './components/donation-components/stripe-checkout-handler/stripe-checkout-handler.component';
+import { VoteComponent } from './components/vote-components/vote/vote.component';
+import { VoteDetailsComponent } from './components/vote-components/vote-details/vote-details.component';
+import { VoteFormComponent } from './components/vote-components/vote-form/vote-form.component';
 import {AuthInterceptor, httpInterceptorProviders} from './guards/auth-interceptor';
+import {UserListComponent} from './components/user-crud-components/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {AuthInterceptor, httpInterceptorProviders} from './guards/auth-intercept
     VoteComponent,
     VoteDetailsComponent,
     VoteFormComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,
