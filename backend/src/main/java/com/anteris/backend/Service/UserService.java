@@ -155,7 +155,7 @@ public class UserService {
             roles.forEach(role -> {
                 _roles.add(role.getName().name());
             });
-            user.setRoles(_roles);
+            _user.setRoles(_roles);
 
             userRepository.save(_user);
             return new ResponseEntity<>(user, HttpStatus.OK);

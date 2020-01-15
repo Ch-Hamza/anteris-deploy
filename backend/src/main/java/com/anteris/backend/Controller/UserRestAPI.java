@@ -28,7 +28,6 @@ public class UserRestAPI {
     @GetMapping("/role/{role}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<UserInfo>> UsersByRole(@PathVariable("role") String roleR) {
-
         return userService.findByRole(roleR);
     }
 
