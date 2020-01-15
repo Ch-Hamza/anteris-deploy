@@ -37,6 +37,7 @@ public class PendingAccountService {
                     HttpStatus.BAD_REQUEST);
         }
         PendingUser pendingUser = new PendingUser();
+        System.out.println(pendingUserRequest.getEmail());
         pendingUser.setEmail(pendingUserRequest.getEmail());
         try {
             pendingUser.setId(HashFunction.toHexString(HashFunction.getSHA(pendingUserRequest.getEmail())));

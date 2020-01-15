@@ -4,6 +4,7 @@ import {HumanManagementService} from '../../../services/humanManagement.service'
 import {ToastrService} from 'ngx-toastr';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PendingAccountService} from '../../../services/pendingAccount.service';
+import {ClipboardService} from 'ngx-clipboard';
 
 @Component({
   selector: 'app-user-list',
@@ -14,8 +15,7 @@ export class UserListComponent implements OnInit {
 
   roleForm: FormGroup;
   users: User[];
-  pendingCount = 0;
-  email = '';
+  pendingCount: number;
   editMode = false;
   selectedUser: User;
   dropdownListRoles = [
@@ -27,7 +27,8 @@ export class UserListComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private humanManagement: HumanManagementService,
               private pendingAccountService: PendingAccountService,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private clipboardService: ClipboardService) {
   }
 
   initForm() {
@@ -37,25 +38,31 @@ export class UserListComponent implements OnInit {
 }
   ngOnInit() {
     this.pendingAccountService.countAll().subscribe(
-      (data) => console.log(data)
+      (data) => this.pendingCount = data as number
     );
     this.humanManagement.findAll().subscribe(
       (data) =>  this.users = data as User[],
       () => this.toastr.error('An error has occured!'));
   }
 
-  sendInvitation() {
-    this.pendingAccountService.invite(this.email).subscribe(
-      () => this.toastr.success('Invitation Sent'),
+  sendInvitation(email) {
+    this.pendingAccountService.invite(email).subscribe(
+      (data) => {
+        this.toastr.success('Invitation Sent');
+        this.clipboardService.copyFromContent(data['message'] as string);
+        this.pendingAccountService.countAll().subscribe(
+          (d) => this.pendingCount = d as number
+        );
+      },
       () => this.toastr.warning('Invitation Error')
-    );
-    this.pendingAccountService.countAll().subscribe(
-      (data) => console.log(data)
     );
   }
   deleteInvitation() {
     this.pendingAccountService.deleteAll().subscribe(
-      () => this.toastr.success('Invitations Deleted'),
+      () => {
+        this.pendingCount = 0;
+        this.toastr.success('Invitations Deleted');
+      },
       () => this.toastr.warning('Delete Error')
     );
   }

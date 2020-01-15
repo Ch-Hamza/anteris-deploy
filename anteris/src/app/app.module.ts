@@ -31,6 +31,7 @@ import {EditMemberComponent} from './components/edit-member/edit-member.componen
 import {VoteDisplayComponent} from './components/vote-display/vote-display.component';
 import {MatProgressBar, MatProgressBarModule} from '@angular/material';
 import {CountdownTimerModule} from 'angular-countdown-timer';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import {CountdownTimerModule} from 'angular-countdown-timer';
     NgSelectModule,
     BrowserAnimationsModule,
     MatProgressBarModule,
-    CountdownTimerModule.forRoot()
+    CountdownTimerModule.forRoot(),
+    ClipboardModule,
   ],
   providers: [
     { provide: AuthInterceptor, useClass: AuthInterceptor },
