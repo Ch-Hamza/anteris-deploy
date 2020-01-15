@@ -19,8 +19,8 @@ public class PendingAccountService {
     @Autowired
     PendingUserRepository pendingUserRepository;
 
-    public ResponseEntity<PendingUser> findById(String id) {
-        Optional<PendingUser> pendingUser = pendingUserRepository.findById(id);
+    public ResponseEntity<PendingUser> findByLink(String link) {
+        Optional<PendingUser> pendingUser = pendingUserRepository.findByLink(link);
         if(pendingUser.isPresent()) {
             return new ResponseEntity<>(pendingUser.get(), HttpStatus.OK);
         } else {
@@ -40,13 +40,13 @@ public class PendingAccountService {
         System.out.println(pendingUserRequest.getEmail());
         pendingUser.setEmail(pendingUserRequest.getEmail());
         try {
-            pendingUser.setId(HashFunction.toHexString(HashFunction.getSHA(pendingUserRequest.getEmail())));
+            pendingUser.setLink(HashFunction.toHexString(HashFunction.getSHA(pendingUserRequest.getEmail())));
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
 
         pendingUserRepository.save(pendingUser);
-        String link = "http://localhost:4200/pending/" +pendingUser.getId();
+        String link = "http://localhost:4200/pending/" +pendingUser.getLink();
         return new ResponseEntity<>(new ResponseMessage(link), HttpStatus.OK);
     }
     public ResponseEntity<String> removePendingUser(String email) {

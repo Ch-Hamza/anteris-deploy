@@ -13,10 +13,13 @@ import { EditMemberComponent } from './components/edit-member/edit-member.compon
 import { DonationListComponent } from './components/donation-list/donation-list.component';
 import { VoteEditComponent } from './components/vote-edit/vote-edit.component';
 import { VoteDetailsComponent } from './components/vote-components/vote-details/vote-details.component';
+import {WelcomeComponent} from './components/welcome/welcome.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: '', component: WelcomeComponent},
+  { path: 'pending/:id', component: RegisterComponent},
+  { path: 'dashboard', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'donation', component: DonationComponent, canActivate: [AuthGuard] },

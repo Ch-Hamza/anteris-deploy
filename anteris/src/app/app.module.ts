@@ -32,6 +32,7 @@ import {VoteDisplayComponent} from './components/vote-display/vote-display.compo
 import {MatProgressBar, MatProgressBarModule} from '@angular/material';
 import {CountdownTimerModule} from 'angular-countdown-timer';
 import { ClipboardModule } from 'ngx-clipboard';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ClipboardModule } from 'ngx-clipboard';
     VoteEditComponent,
     ListMembersComponent,
     EditMemberComponent,
-    VoteDisplayComponent
+    VoteDisplayComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,

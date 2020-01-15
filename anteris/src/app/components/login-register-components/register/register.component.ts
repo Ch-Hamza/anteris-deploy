@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import {ActivatedRoute, Router} from '@angular/router';
+import {PendingAccountService} from '../../../services/pendingAccount.service';
 
 @Component({
   selector: 'app-register',
@@ -18,21 +20,37 @@ export class RegisterComponent implements OnInit {
     'ROLE_'
   ];
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private route: Router,
+    private pendingAccount: PendingAccountService,
+    private formBuilder: FormBuilder,
     private userService: UserService,
     private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.initForm();
+    this.initForm('');
+    this.activatedRoute.params.subscribe(
+      (data) => {
+        this.pendingAccount.getById(data.id).subscribe(
+
+          (dt) => {
+            // @ts-ignore
+            this.initForm(dt.email);
+          },
+          (error) => this.route.navigate(['/'])
+        );
+      }
+    );
   }
 
-  initForm() {
+  initForm(email) {
     this.addUser = this.formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       username: ['', Validators.required],
-      email: [],
-      role: [],
+      email: [email],
+      role: [['ROLE_USER']],
       password: ['', Validators.required],
     });
   }
@@ -51,8 +69,6 @@ export class RegisterComponent implements OnInit {
     this.userService.addUser(this.addUser.value).subscribe(
       (data: any) => {
         this.toastr.success('Member added successfully!');
-        //console.log(data);
-        this.ngOnInit();
       },
       error => {
         this.toastr.error('An error has occured!');
