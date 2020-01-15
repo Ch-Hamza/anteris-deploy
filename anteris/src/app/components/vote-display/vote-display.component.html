@@ -1,0 +1,44 @@
+<div class="card" *ngIf="restricted">
+    <div class="row justify-content-around">
+        <div class="bg-info-active col-10 pt-4">
+            <div>{{vote.title}}</div><hr>
+            <h6 class="text-muted" *ngIf="!vote.closed">
+                <i class="fa fa-clock"></i>&nbsp;
+                <countdown-timer (zeroTrigger)="triggerFunction(vote)" [end]="getDate(vote.end_date)"></countdown-timer>
+            </h6>
+            <h6 class="badge badge-danger" *ngIf="vote.closed">
+                Vote Closed
+            </h6>
+        </div>
+    </div>
+        
+    <div class="card-footer mt-3">
+        <div class="row justify-content-center">
+            <div class="col-sm-8 border-right mt-3">
+                <div class="description-block">
+                    <h5 class="description-header">vote results</h5>
+                    <div class="mt-4">
+                        <div *ngFor="let option of vote.vote_options">
+                            <div class="row justify-content-start">
+                                <div>
+                                    <input type="radio" value="{{option}}" name="vote{{vote.id}}" (change)="send_vote(option)" [checked]="option.checked" [disabled]="vote.closed">&nbsp;
+                                    <label>{{option.title}}</label> 
+                                </div>
+                            </div>
+                            <mat-progress-bar mode="determinate" [value]="option.percentage"></mat-progress-bar>
+                            <span class="text-muted col-3">{{option.total_votes}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <div class="row justify-content-center">
+                <a class="btn btn-sm btn-info col-3 mr-2" [routerLink]="['/vote-details', vote.id]">Vote Details</a>
+                <a *ngIf="authorized" class="btn btn-sm btn-warning col-3 mr-2 text-white" [routerLink]="['/edit-vote', vote.id]">Edit</a>
+                <div *ngIf="authorized" class="btn btn-sm btn-danger col-3 mr-2" (click)="openConfirmationDialog()">Delete</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -19,7 +19,9 @@ export class StripeCheckoutHandlerComponent implements OnInit {
       image: 'our_logo.png',
       locale: 'auto',
       token: token => {
-        this.donationService.processPayment(token, this.amount);
+        this.donationService.processPayment(token, this.amount).subscribe(data => {
+          console.log(data);
+        });
       }
     });
   }

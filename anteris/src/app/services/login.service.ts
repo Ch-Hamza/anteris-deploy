@@ -11,7 +11,7 @@ export class LoginService {
 
   api = 'http://localhost:8080';
 
-  private currentUserSubject: BehaviorSubject<User>;
+  private currentUserSubject;
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient) {
@@ -19,7 +19,7 @@ export class LoginService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue(): User {
+  public get currentUserValue() {
       return this.currentUserSubject.value;
   }
 

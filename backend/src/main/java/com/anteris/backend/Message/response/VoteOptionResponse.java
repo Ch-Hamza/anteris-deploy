@@ -3,7 +3,7 @@ package com.anteris.backend.Message.response;
 public class VoteOptionResponse {
     private long id;
     private String title;
-    private String user;
+    private long user_id;
 
     public long getId() {
         return id;
@@ -21,11 +21,11 @@ public class VoteOptionResponse {
         this.title = title;
     }
 
-    public String getUser() {
-        return user;
+    public long getUser_id() {
+        return user_id;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUser_id(long user_id) {
+        this.user_id = user_id;
     }
 }

@@ -1,1 +1,68 @@
-<p>vote-details works!</p>
+<div class="row justify-content-center" *ngIf="loaded">
+    <div class="card col-10">
+        <div class="card-body">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="row justify-content-around">
+                            <div class="bg-info-active col-10 pt-4">
+                                <div>{{vote.title}}</div><hr>
+                            </div>
+                        </div>
+                            
+                        <div class="card-footer mt-3">
+                            <div class="row justify-content-center">
+                                <div class="col-sm-8 border-right mt-3">
+                                    <div class="description-block">
+                                        <h5 class="description-header">vote results</h5>
+                                        <div class="mt-4">
+                                            <div *ngFor="let option of vote.vote_options">
+                                                <div class="row justify-content-start">
+                                                    <div>
+                                                        <label>{{option.title}}</label> 
+                                                    </div>
+                                                </div>
+                                                <mat-progress-bar mode="determinate" [value]="option.percentage"></mat-progress-bar>
+                                                <span class="text-muted col-3">{{option.total_votes}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <div class="mt-4">
+                                <div class="row justify-content-center">
+                                    <a *ngIf="authorized" class="btn btn-sm btn-warning col-3 mr-2 text-white" [routerLink]="['/edit-vote', vote.id]">Edit</a>
+                                    <div *ngIf="authorized" class="btn btn-sm btn-danger col-3 mr-2" (click)="openConfirmationDialog()">Delete</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <h6 class="text-muted">Description</h6>
+                    <div>{{vote.description}}</div>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-5">
+                <div class="col-6">
+                    <h6 class="text-muted">Created By</h6>
+                    <div class="row align-content-center">
+                        <img class="col-2" src="../../../assets/uploads/default-user-image.png" alt="">&nbsp;
+                        <div class="row align-content-center">username</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <h6 class="text-muted">Time Remaining</h6>
+                    <h6 class="text-muted" *ngIf="!vote.closed">
+                        <i class="fa fa-clock"></i>&nbsp;
+                        <countdown-timer (zeroTrigger)="triggerFunction(vote)" [end]="getDate(vote.end_date)"></countdown-timer>
+                    </h6>
+                    <h6 class="badge badge-danger" *ngIf="vote.closed">
+                        Vote Closed
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

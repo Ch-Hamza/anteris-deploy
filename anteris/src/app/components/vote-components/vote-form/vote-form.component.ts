@@ -12,7 +12,6 @@ import { ToastrService } from 'ngx-toastr';
 export class VoteFormComponent implements OnInit {
 
   addVote: FormGroup;
-  rolesLoaded = false;
 
   dropdownListRoles = [
     'ROLE_ADMIN',
@@ -33,6 +32,8 @@ export class VoteFormComponent implements OnInit {
     this.addVote = this.formBuilder.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
+      start_date: [],
+      end_date: [],
       role_restriction: [[]],
       voteOptionResponses: this.formBuilder.array([]),
     });
@@ -70,7 +71,7 @@ export class VoteFormComponent implements OnInit {
         (data: any) => {
           this.toastr.success('Vote added successfully!');
           //console.log(data);
-          //this.router.navigate(['/vote']);
+          this.router.navigate(['/vote']);
         },
         error => {
           this.toastr.error('An error has occured!');
