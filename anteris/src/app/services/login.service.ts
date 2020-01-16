@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class LoginService {
 
-  api = 'http://localhost:8080';
+  api = 'http://54.36.182.216:8085';
 
   private currentUserSubject;
   public currentUser;

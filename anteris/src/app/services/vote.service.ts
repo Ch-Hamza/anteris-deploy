@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class VoteService {
 
-  api = 'http://localhost:8080/vote/';
+  api = 'http://54.36.182.216:8085/vote/';
 
   constructor(private http: HttpClient) { }
 

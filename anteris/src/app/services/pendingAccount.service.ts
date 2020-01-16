@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class PendingAccountService {
-  api = 'http://localhost:8080/pending/';
+  api = 'http://54.36.182.216:8085/pending/';
 
 
   constructor(private http: HttpClient) {

@@ -6,7 +6,7 @@ import { HttpClient, HttpRequest } from '@angular/common/http';
 })
 export class UploadFileService {
 
-  api = 'http://localhost:8080';
+  api = 'http://54.36.182.216:8085';
 
   constructor(private http: HttpClient) { }
 

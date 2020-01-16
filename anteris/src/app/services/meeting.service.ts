@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MeetingService {
 
-  api = 'http://localhost:8080/meeting/';
+  api = 'http://54.36.182.216:8085/meeting/';
 
   constructor(private http: HttpClient) { }
 

@@ -7,7 +7,7 @@ import { LoginService } from './login.service';
 })
 export class DonationService {
 
-  api = 'http://localhost:8080/donation/';
+  api = 'http://54.36.182.216:8085/donation/';
   stripe = Stripe('pk_test_fLMkFjoVDt7WMvoUbhpGBEe9003H5lO4Kq');
 
   constructor(private http: HttpClient, private loginService: LoginService) { }

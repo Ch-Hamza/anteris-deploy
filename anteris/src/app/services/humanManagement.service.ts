@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class HumanManagementService {
 
-  api = 'http://localhost:8080/users/';
+  api = 'http://54.36.182.216:8085/users/';
 
   constructor(private http: HttpClient) { }
 
