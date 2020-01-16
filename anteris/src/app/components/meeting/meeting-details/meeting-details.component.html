@@ -20,10 +20,12 @@
                 </div>
             </div>
             <hr>
-            <div class="row justify-content-center mt-2">
-                <div class="col-10">Invited Members :</div>
-                <div *ngFor="let user of invited_users">
-                    {{user}}, 
+            <div class="row justify-content-start mt-2">
+                <div class="col-12">Invited Members :</div>
+                <div class="col-12">
+                    <span *ngFor="let user of invited_users">
+                        {{user}}, 
+                    </span>
                 </div>
             </div>
     
