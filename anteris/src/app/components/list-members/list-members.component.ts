@@ -30,6 +30,17 @@ export class ListMembersComponent implements OnInit {
   delete(id) {
     this.userService.removeById(id).subscribe(data => {
       this.toastr.success('User banned successfully!');
+      this.loadData();
+    },
+    error => {
+      this.toastr.error('An error has occured!');
+    });
+  }
+
+  unban(id) {
+    this.userService.unbanById(id).subscribe(data => {
+      this.toastr.success('User unbanned successfully!');
+      this.loadData();
     },
     error => {
       this.toastr.error('An error has occured!');

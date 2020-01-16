@@ -1,0 +1,39 @@
+<div class="row justify-content-center" *ngIf="loaded">
+    <div class="card col-10">
+        <div class="row justify-content-around">
+            <div class="bg-info-active col-10 pt-4">
+                <div>{{meeting.title}}</div><hr>
+                <h6 class="text-muted">
+                    <i class="fa fa-clock"></i>&nbsp;
+                    <countdown-timer [end]="getDate(meeting.meeting_date)"></countdown-timer>
+                </h6>
+            </div>
+        </div>
+    
+        <div class="card-footer mt-3">
+            <div class="row justify-content-center">
+                <div class=" col-10 pt-4">
+                    <h6><b>Description</b></h6>
+                    <div class="mt-2">
+                        {{meeting.description}}
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row justify-content-center mt-2">
+                <div class="col-10">Invited Members :</div>
+                <div *ngFor="let user of invited_users">
+                    {{user}}, 
+                </div>
+            </div>
+    
+            <div class="mt-4">
+                <div class="row justify-content-center">
+                    <div class="btn btn-sm btn-success col-3 mr-2 text-white" (click)="download()">Download</div>
+                    <a *ngIf="authorized" class="btn btn-sm btn-warning col-3 mr-2 text-white" [routerLink]="['/edit-meeting', meeting.id]">Edit</a>
+                    <div *ngIf="authorized" class="btn btn-sm btn-danger col-3 mr-2" (click)="openConfirmationDialog()">Delete</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

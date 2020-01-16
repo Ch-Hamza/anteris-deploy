@@ -2,7 +2,7 @@
     <div class="card col-10">
         <div class="card-body">
             <div class="row justify-content-center">
-                <div class="col-6">
+                <div class="col-lg-6 col-md-10">
                     <div class="card">
                         <div class="row justify-content-around">
                             <div class="bg-info-active col-10 pt-4">
@@ -32,27 +32,27 @@
                     
                             <div class="mt-4">
                                 <div class="row justify-content-center">
-                                    <a *ngIf="authorized" class="btn btn-sm btn-warning col-3 mr-2 text-white" [routerLink]="['/edit-vote', vote.id]">Edit</a>
-                                    <div *ngIf="authorized" class="btn btn-sm btn-danger col-3 mr-2" (click)="openConfirmationDialog()">Delete</div>
+                                    <a *ngIf="authorized" class="btn btn-sm btn-warning col-4 mr-2 text-white" [routerLink]="['/edit-vote', vote.id]">Edit</a>
+                                    <div *ngIf="authorized" class="btn btn-sm btn-danger col-4 mr-2" (click)="openConfirmationDialog()">Delete</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6 col-md-10">
                     <h6 class="text-muted">Description</h6>
                     <div>{{vote.description}}</div>
                 </div>
             </div>
             <div class="row justify-content-center mt-5">
-                <div class="col-6">
+                <div class="col-lg-6 col-md-10">
                     <h6 class="text-muted">Created By</h6>
                     <div class="row align-content-center">
                         <img class="col-2" src="../../../assets/uploads/default-user-image.png" alt="">&nbsp;
                         <div class="row align-content-center">username</div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6 col-md-10">
                     <h6 class="text-muted">Time Remaining</h6>
                     <h6 class="text-muted" *ngIf="!vote.closed">
                         <i class="fa fa-clock"></i>&nbsp;

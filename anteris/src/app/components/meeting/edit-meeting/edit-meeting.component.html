@@ -1,0 +1,53 @@
+<div class="row justify-content-center form-group" *ngIf="loaded">
+    <form [formGroup]="editMeeting" role="form" class="mb-5 w-75" (ngSubmit)="onSubmit()">
+        <div class="row justify-content-center">
+            <div class="form-group col-lg-12 col-md-10">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" placeholder="Title" [ngClass]="{ 'is-invalid': submitted && f.title.errors }" formControlName="title">
+                <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                    <div style="margin-top: 1rem; color: red" *ngIf="f.title.errors.required">Title is required</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="form-group col-lg-12 col-md-10">
+                <label for="description">Description</label>
+                <textarea class="form-control" formControlName="description" name="description" id="description" placeholder="Description" rows="5" [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
+                <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                    <div style="margin-top: 1rem; color: red"  *ngIf="f.description.errors.required">Description is required</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="form-group col-lg-12 col-md-10">
+                <label for="meeting_date">Meeting Date</label>
+                <input type="date" class="form-control" formControlName="meeting_date" name="meeting_date" id="meeting_date">
+            </div>
+        </div>
+
+        <div class="row justify-content-center" *ngIf="users_loaded">
+            <div class="form-group col-lg-12 col-md-10">
+                <label for="role_restriction">Role restriction</label>
+                <ng-select [items]="dropdownListMembers"
+                    bindLabel="fullname"
+                    [multiple]="true"
+                    placeholder="Select Users"
+                    formControlName="user_ids">
+                </ng-select>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="form-group col-lg-12 col-md-10">
+                <label for="record_file">Meeting record</label>
+                <input type="file" class="form-control" formControlName="record_file" name="record_file" id="record_file" (change)="fileChange($event)">
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <input type="submit" class="btn btn-success col-lg-6 col-md-10" value="Submit">
+        </div>
+    </form>
+</div>

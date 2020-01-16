@@ -28,7 +28,8 @@
                         </td>
                         <td>
                             <div class="btn btn-sm btn-warning" [routerLink]="['/edit-member', m.id]">Edit</div>
-                            <div class="btn btn-sm btn-danger ml-2" (click)="delete(m.id)">Ban</div>
+                            <div class="btn btn-sm btn-danger ml-2" (click)="delete(m.id)" *ngIf="m.enabled">Ban</div>
+                            <div class="btn btn-sm btn-danger ml-2" (click)="unban(m.id)" *ngIf="!m.enabled">Unban</div>
                         </td>
                     </tr>
                 </table>

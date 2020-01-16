@@ -51,8 +51,8 @@
                 <div class="row justify-content-end">
                     <div class="btn btn-success btn-sm m-2" (click)="addVoteOption()">+ Add vote option</div>
                 </div>
-                <div formArrayName="voteOptionResponses">
-                    <div *ngFor="let vo of voteOptionResponses.controls; let i=index" class="mt-2">
+                <div formArrayName="vote_options">
+                    <div *ngFor="let vo of vote_options.controls; let i=index" class="mt-2">
                         <div [formGroupName]="i">
                             <div class="row">
                                 <div class="form-group col-lg-10 col-md-8">

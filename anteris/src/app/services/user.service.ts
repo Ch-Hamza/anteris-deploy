@@ -29,4 +29,8 @@ export class UserService {
   removeById(id) {
     return this.http.delete(this.api + id);
   }
+
+  unbanById(id) {
+    return this.http.delete(this.api + 'unban/' + id);
+  }
 }

@@ -72,9 +72,9 @@ public class VoteService {
         return new ResponseEntity<>(vote, HttpStatus.OK);
     }
 
-    public ResponseEntity<?> updateVote(VoteResponse voteResponse, long id) {
+    public ResponseEntity<?> updateVote(VoteResponse voteResponse) {
 
-        Optional<Vote> voteOptional = voteRepository.findByIdAndEnabled(id, true);
+        Optional<Vote> voteOptional = voteRepository.findByIdAndEnabled(voteResponse.getId(), true);
         if(voteOptional.isPresent()) {
             Vote vote = voteOptional.get();
             vote = edit(vote, voteResponse);

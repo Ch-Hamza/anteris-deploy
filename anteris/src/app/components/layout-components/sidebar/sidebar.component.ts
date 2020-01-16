@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {LoginService} from '../../../services/login.service';
-import {User} from '../../../models/user';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,7 +9,7 @@ import {User} from '../../../models/user';
 })
 export class SidebarComponent implements OnInit {
 
-  private user: User;
+  private user;
 
   constructor(public router: Router, private loginService: LoginService) {
     this.loginService.currentUser.subscribe(data => {

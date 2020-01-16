@@ -38,6 +38,13 @@
           </li>
 
           <li class="nav-item">
+            <a routerLink='donation-list' [className]="router.url === '/donation-list' ? 'nav-link active' : 'nav-link'">
+              <i class="nav-icon fas fa-th"></i>
+              <p>Donation list</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a routerLink='vote' [className]="router.url === '/vote' ? 'nav-link active' : 'nav-link'">
               <i class="nav-icon fas fa-th"></i>
               <p>Vote</p>
@@ -47,6 +54,20 @@
             <a routerLink='users-list' [className]="router.url === '/users-list' ? 'nav-link active' : 'nav-link'">
               <i class="nav-icon fas fa-th"></i>
               <p>Users Management</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a routerLink='member' [className]="router.url === '/member' ? 'nav-link active' : 'nav-link'">
+              <i class="nav-icon fas fa-th"></i>
+              <p>Members</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a routerLink='meeting' [className]="router.url === '/meeting' ? 'nav-link active' : 'nav-link'">
+              <i class="nav-icon fas fa-th"></i>
+              <p>Meeting</p>
             </a>
           </li>
         </ul>

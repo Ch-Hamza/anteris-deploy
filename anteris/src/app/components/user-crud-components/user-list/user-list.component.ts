@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../../../models/user';
 import {HumanManagementService} from '../../../services/humanManagement.service';
 import {ToastrService} from 'ngx-toastr';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -14,10 +13,10 @@ import {ClipboardService} from 'ngx-clipboard';
 export class UserListComponent implements OnInit {
 
   roleForm: FormGroup;
-  users: User[];
+  users;
   pendingCount: number;
   editMode = false;
-  selectedUser: User;
+  selectedUser;
   dropdownListRoles = [
     'ROLE_ADMIN',
     'ROLE_USER',
@@ -41,7 +40,7 @@ export class UserListComponent implements OnInit {
       (data) => this.pendingCount = data as number
     );
     this.humanManagement.findAll().subscribe(
-      (data) =>  this.users = data as User[],
+      (data) =>  this.users = data,
       () => this.toastr.error('An error has occured!'));
   }
 

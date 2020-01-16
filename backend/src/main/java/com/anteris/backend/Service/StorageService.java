@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class StorageService {
 
     Logger log = LoggerFactory.getLogger(this.getClass().getName());
-    public final Path rootLocation = Paths.get("C:\\wamp64\\www\\frontend2\\assets\\uploads");
+    public final Path rootLocation = Paths.get("D:\\git repos\\angular-project-tp-gl4\\anteris\\src\\assets\\uploads\\");
 
     public void store(MultipartFile file, String name) {
         try {
@@ -31,7 +31,7 @@ public class StorageService {
     }
 
     public void delete(String fileName) {
-        Path rootLocation = Paths.get("C:\\wamp64\\www\\frontend2\\assets\\uploads\\" + fileName);
+        Path rootLocation = Paths.get("D:\\git repos\\angular-project-tp-gl4\\anteris\\src\\assets\\uploads\\" + fileName);
         FileSystemUtils.deleteRecursively(rootLocation.toFile());
     }
 

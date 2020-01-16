@@ -16,7 +16,7 @@ export class StripeCheckoutHandlerComponent implements OnInit {
   ngOnInit() {
     this.handler = StripeCheckout.configure({
       key: 'pk_test_fLMkFjoVDt7WMvoUbhpGBEe9003H5lO4Kq',
-      image: 'our_logo.png',
+      image: '../../../../assets/uploads/default-user-image.png',
       locale: 'auto',
       token: token => {
         this.donationService.processPayment(token, this.amount).subscribe(data => {

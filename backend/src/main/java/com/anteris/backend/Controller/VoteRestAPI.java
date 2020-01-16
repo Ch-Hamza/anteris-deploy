@@ -36,10 +36,10 @@ public class VoteRestAPI {
         return voteService.createVote(voteResponse);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public ResponseEntity<?> updateVote(@RequestBody VoteResponse voteResponse, @PathVariable("id") long id) {
-        return voteService.updateVote(voteResponse, id);
+    public ResponseEntity<?> updateVote(@RequestBody VoteResponse voteResponse) {
+        return voteService.updateVote(voteResponse);
     }
 
     @PutMapping("/send-vote")

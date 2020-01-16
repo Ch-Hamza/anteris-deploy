@@ -23,8 +23,6 @@ export class DonationListComponent implements OnInit {
     let donations = this.donationService.findAll();
     let stats = this.donationService.findStats();
     forkJoin([donations, stats]).subscribe(results => {
-      // results[0] is our character
-      // results[1] is our character homeworld
       this.donations = results[0];
       this.donation_stats = results[1];
       this.loaded = true;

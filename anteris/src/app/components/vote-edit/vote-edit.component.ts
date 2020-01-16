@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { VoteService } from 'src/app/services/vote.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -49,12 +49,13 @@ export class VoteEditComponent implements OnInit {
       start_date: [this.vote.start_date],
       end_date: [this.vote.end_date],
       role_restriction: [this.vote.role_restriction],
-      voteOptionResponses: this.formBuilder.array([]),
+      vote_options: this.formBuilder.array([]),
     });
 
     this.vote.vote_options.forEach(option => {
-      this.voteOptionResponses.push(this.formBuilder.group({
-        title: [option.title],
+      this.vote_options.push(this.formBuilder.group({
+        id: option.id,
+        title: option.title
       }));
     });
   }
@@ -63,23 +64,23 @@ export class VoteEditComponent implements OnInit {
     return this.editVote.controls;
   }
 
-  get voteOptionResponses() {
-    return this.editVote.get('voteOptionResponses') as FormArray;
+  get vote_options() {
+    return this.editVote.get('vote_options') as FormArray;
   }
 
   addVoteOption() {
-    this.voteOptionResponses.push(this.formBuilder.group({
+    this.vote_options.push(this.formBuilder.group({
       title: [''],
     }));
   }
 
   removeVoteOption(i) {
-    this.voteOptionResponses.removeAt(i);
+    this.vote_options.removeAt(i);
   }
 
   onSubmit() {
-    //console.log(this.editVote.value);
-
+    console.log(this.editVote.value);
+    this.editVote.addControl('id', new FormControl(this.vote.id));
     // stop here if form is invalid
     if (this.editVote.invalid) {
       return;
