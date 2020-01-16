@@ -38,6 +38,7 @@ import { AddMeetingComponent } from './components/meeting/add-meeting/add-meetin
 import { EditMeetingComponent } from './components/meeting/edit-meeting/edit-meeting.component';
 import { DisplayMeetingComponent } from './components/meeting/display-meeting/display-meeting.component';
 import { MeetingDetailsComponent } from './components/meeting/meeting-details/meeting-details.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { MeetingDetailsComponent } from './components/meeting/meeting-details/me
     AddMeetingComponent,
     EditMeetingComponent,
     DisplayMeetingComponent,
-    MeetingDetailsComponent
+    MeetingDetailsComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,24 +8,24 @@ import javax.persistence.*;
 public class PendingUser {
 
 
-    private String id;
+    private String link;
     @Id
     private String email;
 
     public PendingUser() {
     }
 
-    public PendingUser(String id, String email) {
-        this.id = id;
+    public PendingUser(String link, String email) {
+        this.link = link;
         this.email = email;
     }
 
-    public String getId() {
-        return id;
+    public String getLink() {
+        return link;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public String getEmail() {

@@ -23,7 +23,7 @@ export class PendingAccountService {
   }
 
   getById(id) {
-    return this.http.get(this.api + id);
+    return this.http.get(this.api + 'id/' +  id);
   }
 
 }

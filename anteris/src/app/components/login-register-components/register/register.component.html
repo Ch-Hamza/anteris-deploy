@@ -20,7 +20,7 @@
 
             <div class="form-group col-lg-6 col-md-10">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email">
+                <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email" disabled>
             </div>
         </div>
 
@@ -28,18 +28,6 @@
             <div class="form-group col-lg-12 col-md-10">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
-            </div>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="form-group col-lg-12 col-md-10">
-                <label for="role">Roles</label>
-                <ng-select [items]="dropdownListRoles"
-                    bindLabel="role"
-                    [multiple]="true"
-                    placeholder="Select Roles"
-                    formControlName="role">
-                </ng-select>
             </div>
         </div>
 

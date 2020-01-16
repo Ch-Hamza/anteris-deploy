@@ -18,10 +18,13 @@ import { ListMeetingsComponent } from './components/meeting/list-meetings/list-m
 import { AddMeetingComponent } from './components/meeting/add-meeting/add-meeting.component';
 import { EditMeetingComponent } from './components/meeting/edit-meeting/edit-meeting.component';
 import { MeetingDetailsComponent } from './components/meeting/meeting-details/meeting-details.component';
+import {WelcomeComponent} from './components/welcome/welcome.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: '', component: WelcomeComponent},
+  { path: 'pending/:id', component: RegisterComponent},
+  { path: 'dashboard', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
 

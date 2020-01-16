@@ -20,6 +20,7 @@ export class UserListComponent implements OnInit {
   dropdownListRoles = [
     'ROLE_ADMIN',
     'ROLE_USER',
+    'ROLE_FINANCIAL_MANAGER',
     'ROLE_'
   ];
 
@@ -48,7 +49,8 @@ export class UserListComponent implements OnInit {
     this.pendingAccountService.invite(email).subscribe(
       (data) => {
         this.toastr.success('Invitation Sent');
-        this.clipboardService.copyFromContent(data['message'] as string);
+        // @ts-ignore
+        this.clipboardService.copyFromContent(data.message as string);
         this.pendingAccountService.countAll().subscribe(
           (d) => this.pendingCount = d as number
         );

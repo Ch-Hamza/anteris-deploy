@@ -19,9 +19,9 @@ public class PendingUserRestAPI {
     @Autowired
     PendingAccountService pendingAccountService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PendingUser> getPendingUserById(@PathVariable("id") String id) {
-        return pendingAccountService.findById(id);
+    @GetMapping("/id/{link}")
+    public ResponseEntity<PendingUser> getPendingUserByLink(@PathVariable("link") String link) {
+        return pendingAccountService.findByLink(link);
     }
     @PostMapping("/")
     @PreAuthorize("hasRole('ADMIN')")

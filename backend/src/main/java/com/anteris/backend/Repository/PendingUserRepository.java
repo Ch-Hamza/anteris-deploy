@@ -11,6 +11,7 @@ public interface PendingUserRepository  extends JpaRepository<PendingUser, Strin
 
     boolean existsByEmail(String email);
     Optional<PendingUser> findByEmail(String email);
+    Optional<PendingUser> findByLink(String link);
     void deleteByEmail(String email);
     void deleteAll();
     @Query(value = "SELECT COUNT(*) FROM pending_users", nativeQuery = true)
