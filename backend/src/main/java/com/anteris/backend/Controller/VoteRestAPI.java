@@ -19,37 +19,37 @@ public class VoteRestAPI {
     VoteService voteService;
 
     @GetMapping("/")
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'FINANCIAL_MANAGER')")
     public ResponseEntity<List<VoteResponse>> allVotes() {
         return voteService.findAll();
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'FINANCIAL_MANAGER')")
     public ResponseEntity<VoteResponse> getVoteById(@PathVariable("id") long id) {
         return voteService.findById(id);
     }
 
     @PostMapping("/")
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'FINANCIAL_MANAGER')")
     public ResponseEntity<?> createVote(@RequestBody VoteResponse voteResponse) {
         return voteService.createVote(voteResponse);
     }
 
     @PutMapping("/")
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'FINANCIAL_MANAGER')")
     public ResponseEntity<?> updateVote(@RequestBody VoteResponse voteResponse) {
         return voteService.updateVote(voteResponse);
     }
 
     @PutMapping("/send-vote")
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'FINANCIAL_MANAGER')")
     public ResponseEntity<?> vote(@RequestBody VoteForm voteForm) {
         return voteService.vote(voteForm);
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'FINANCIAL_MANAGER')")
     public ResponseEntity<String> removeVote(@PathVariable("id") long id) {
         return voteService.removeVote(id);
     }

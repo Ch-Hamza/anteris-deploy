@@ -21,7 +21,6 @@ export class UserListComponent implements OnInit {
     'ROLE_ADMIN',
     'ROLE_USER',
     'ROLE_FINANCIAL_MANAGER',
-    'ROLE_'
   ];
 
   constructor(private formBuilder: FormBuilder,

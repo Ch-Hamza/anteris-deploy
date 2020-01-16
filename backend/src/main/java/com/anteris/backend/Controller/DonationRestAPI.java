@@ -20,31 +20,31 @@ public class DonationRestAPI {
     DonationService donationService;
 
     @GetMapping("/")
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'FINANCIAL_MANAGER')")
     public ResponseEntity<List<DonationResponse>> allDonations() {
         return donationService.findAll();
     }
 
     @PostMapping("/")
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'FINANCIAL_MANAGER')")
     public ResponseEntity<?> donation(@RequestBody DonationResponse donationResponse) {
         return donationService.donate(donationResponse);
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'FINANCIAL_MANAGER')")
     public ResponseEntity<DonationResponse> getDonationById(@PathVariable("id") long id) {
         return donationService.findById(id);
     }
 
     @GetMapping("/user/{id}")
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'FINANCIAL_MANAGER')")
     public ResponseEntity<List<DonationResponse>> getDonationsByUserId(@PathVariable("id") long id) {
         return donationService.findByUserId(id);
     }
 
     @GetMapping("/stats")
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'FINANCIAL_MANAGER')")
     public ResponseEntity<DonationStats> getDonationStats() {
         return donationService.findStats();
     }

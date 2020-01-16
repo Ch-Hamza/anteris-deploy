@@ -36,7 +36,7 @@ public class UploadRestAPI {
     MeetingRecordRepository meetingRecordRepository;
 
     @PostMapping("/upload-file/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'FINANCIAL_MANAGER')")
     public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file, @PathVariable("id") long id) {
         String message;
         try {
@@ -61,7 +61,7 @@ public class UploadRestAPI {
     }
 
     @PostMapping("/record/upload-file/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'FINANCIAL_MANAGER')")
     public ResponseEntity<String> handleRecordFileUpload(@RequestParam("file") MultipartFile file, @PathVariable("id") long id) {
         String message;
         try {
@@ -91,7 +91,7 @@ public class UploadRestAPI {
     }
 
     @DeleteMapping("/delete-file/{id}/{filename}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'FINANCIAL_MANAGER')")
     public ResponseEntity<String> removeFile(@PathVariable("id") long id, @PathVariable("filename") String filename) {
         String message = "";
         try {
@@ -113,7 +113,7 @@ public class UploadRestAPI {
     }
 
     @GetMapping("/files/{filename:.+}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'FINANCIAL_MANAGER')")
     @ResponseBody
     public ResponseEntity<Resource> getFile(@PathVariable String filename) {
         Resource file = storageService.loadFile(filename);

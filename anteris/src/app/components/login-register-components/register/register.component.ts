@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   dropdownListRoles = [
     'ROLE_ADMIN',
     'ROLE_USER',
-    'ROLE_'
+    'ROLE_FINANCIAL_MANAGER'
   ];
 
   constructor(

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './components/layout-components/home/home.component';
 import { LoginComponent } from './components/login-register-components/login/login.component';
 import { RegisterComponent } from './components/login-register-components/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -8,12 +7,12 @@ import { DonationComponent } from './components/donation-components/donation/don
 import { VoteComponent } from './components/vote-components/vote/vote.component';
 import { VoteFormComponent } from './components/vote-components/vote-form/vote-form.component';
 import {UserListComponent} from './components/user-crud-components/user-list/user-list.component';
-import { ListMembersComponent } from './components/list-members/list-members.component';
-import { EditMemberComponent } from './components/edit-member/edit-member.component';
-import { DonationListComponent } from './components/donation-list/donation-list.component';
-import { VoteEditComponent } from './components/vote-edit/vote-edit.component';
+import { ListMembersComponent } from './components/member/list-members/list-members.component';
+import { EditMemberComponent } from './components/member/edit-member/edit-member.component';
+import { DonationListComponent } from './components/donation-components/donation-list/donation-list.component';
+import { VoteEditComponent } from './components/vote-components/vote-edit/vote-edit.component';
 import { VoteDetailsComponent } from './components/vote-components/vote-details/vote-details.component';
-import { AddMemberComponent } from './components/add-member/add-member.component';
+import { AddMemberComponent } from './components/member/add-member/add-member.component';
 import { ListMeetingsComponent } from './components/meeting/list-meetings/list-meetings.component';
 import { AddMeetingComponent } from './components/meeting/add-meeting/add-meeting.component';
 import { EditMeetingComponent } from './components/meeting/edit-meeting/edit-meeting.component';
@@ -22,9 +21,8 @@ import {WelcomeComponent} from './components/welcome/welcome.component';
 
 
 const routes: Routes = [
-  { path: '', component: WelcomeComponent},
+  { path: '', component: WelcomeComponent, canActivate: [AuthGuard]},
   { path: 'pending/:id', component: RegisterComponent},
-  { path: 'dashboard', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
 

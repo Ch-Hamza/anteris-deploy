@@ -24,19 +24,19 @@ public class PendingUserRestAPI {
         return pendingAccountService.findByLink(link);
     }
     @PostMapping("/")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'FINANCIAL_MANAGER')")
     public ResponseEntity<?> newPendingUser(@RequestBody PendingUserRequest pendingUserRequest) {
         return pendingAccountService.newPendingUser(pendingUserRequest);
     }
 
     @DeleteMapping("/")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'FINANCIAL_MANAGER')")
     public ResponseEntity<?> deleteAll() {
         return pendingAccountService.removeAllPendingUsers();
     }
 
     @GetMapping("/count")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'FINANCIAL_MANAGER')")
     public ResponseEntity<?> countPendingUsers() {
         return pendingAccountService.countPendingUsers();
     }
